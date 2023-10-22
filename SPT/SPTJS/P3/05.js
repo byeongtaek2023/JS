@@ -25,4 +25,4 @@ if (user !== user2){
 };
 
 console.log(user.name, user2.name); // wonjang twojang
-console.log(usr === user2); // flase dd
+console.log(usr === user2); // flase 

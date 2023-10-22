@@ -6,7 +6,7 @@ const options = {
   }
 };
 
-// fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', options)
+//  fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', options)
 //   .then(response => response.json())
 //   .then(response => console.log(response))
 //   .catch(err => console.error(err));
@@ -17,12 +17,12 @@ function sendFetchRequest(url) {
     return response.json();
   });
 }
-//해당 url의 내용을 js 배열로 바꾼 뒤 for반복문 돌려서 카드 생성
+// //해당 url의 내용을 js 배열로 바꾼 뒤 for반복문 돌려서 카드 생성
 async function fetchPost() {
   const datas = await sendFetchRequest(
     'https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1'
   );
-// console.log(datas.results)
+console.log(datas.results)
   const lists = datas.results;
   let a = '';
   for (const list of lists) {
@@ -40,5 +40,69 @@ document.querySelector('.card-list').innerHTML = a
 }
 fetchPost();
 
+// // 검색 영역
 
-// 검색 영역
+// const moives = [];
+
+// const renderMovies = (filter = '') => {
+//   const movieList = document.getElementById('movie-list');
+
+// //     if (movies.length === 0) {
+// //     movieList.classList.remove('visible');
+// //     return;
+// //   } else {
+// //     movieList.classList.add('visible');
+// //   }
+//   movieList.innerHTML = '';
+
+//   const filterMovies = !filter
+//     ? movies
+//     : movies.filter((movie) => movie.info.title.includes(filter));
+
+//     filterMovies.forEach((movie) => { 
+//     const movieEl = document.createElement('li');
+//     let text = movie.info.title + `-`;
+//     for (const key in movie.info){
+//         if ( key !== 'title')
+//         text += `${key}: ${movie.info[key]}`;
+//     }
+//     movieEl.textContent = text; 
+//     movieList.append(movieEl);
+//   });
+// };
+
+// const addMovieHandler = () => {
+//     const title = document.getElementById('title').value;
+//     const extraName = document.getElementById('extra-name').value;
+//     const extraValue = document.getElementById('extra-value').value;
+  
+//     if (
+//       title.trim() === '' ||
+//       extraName.trim() === '' ||
+//       extraValue.trim() === ''
+//     ) {
+//       return;
+//     }
+  
+//     const newMovie = {
+//       info: {
+//         title,
+//         [extraName]: extraValue
+//       },
+//       id: Math.random()
+//     };
+  
+//     movies.push(newMovie);
+//     renderMovies();
+//   };
+
+
+// const searchMovieHandler = () => {
+//   const filterTerm = document.getElementById("search-input").value;
+//   renderMovies(filterTerm);
+// };
+
+
+
+// const searchBtn = document.getElementById("serach-btn");
+// searchBtn.addEventListener("click", searchMovieHandler);
