@@ -4,14 +4,16 @@ function Person(name,name){
 }
 
 function Student(name, gender, school) {
-    this.name = name;
-    this.gender = gender;
+    Person.call(this, name, gender);
+    // this.name = name;
+    // this.gender = gender;
     this.school = school;
 }
 
 function Employee(name, gender, company) {
-    this.name = name;
-    this.gender = gender;
+    Person.call(this, name, gender);
+    // this.name = name;
+    // this.gender = gender;
     this.company = company;
 }
 var kd = new Student('길동', 'male', '서울대');
