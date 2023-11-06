@@ -1,7 +1,5 @@
 import "./App.css";
 import { useState } from "react";
-import Header from "./components/Header";
-
 
 export default function App() {
   // --------------제목 내용 입렵 값
@@ -25,7 +23,7 @@ export default function App() {
     };
     setTodos([...todos, newTodo]); //불변성을 유지하기 위해서
     setBody("");
-    setTitle("");
+    setTitle()
 
   };
   // ---------- 입력값 제거
@@ -37,15 +35,22 @@ export default function App() {
   };
   //------------- 포스트 위아래~
   const clickMoveButtonHandler = (id) => {
-    const newTodos = todos.map((todo) => 
-      todo.id === id ? { ...todo, isDone: !todo.isDone } : todo 
-    );
+    const newTodos = todos.map((todo) => {
+      if (todo.id === id) {
+        return { ...todo, isDone: !todo.isDone };
+      } else {
+        return { ...todo };
+      }
+    });
     setTodos(newTodos);
   };
 
   return (
     <div className="layout">
-      <Header/>
+      <div className="container">
+        <div>My Todo List</div>
+        <div>React</div>
+      </div>
       <div className="title">
         <div>
         <label>제목</label>
@@ -93,7 +98,7 @@ export default function App() {
                   delete
                 </button>
                 <button onClick={() => clickMoveButtonHandler(todo.id)}>
-                  Working
+                  move
                 </button>
               </div>
             );
