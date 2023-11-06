@@ -1,0 +1,34 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.layout {
+
+     max-width: 1200px;
+     min-width: 800px;
+     margin: 0 auto;
+      
+}
+
+.title{
+    background-color: aquamarine;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    justify-content:space-between
+}
+
+.box {
+    display: flex;
+   
+    padding: 30px;
+    margin: 30px;
+    background-color: yellow;
+    ;
+}
+
+.post{ 
+    margin-left: 20px;
+}
