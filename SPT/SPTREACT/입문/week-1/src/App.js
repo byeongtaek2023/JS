@@ -1,9 +1,9 @@
-import React from "react"
-import Layout from "Layout";
+import React from "react";
+import TodoList from "./pages/TodoList";
 
 function App() {
- return <Layout>
-  qiajl;ksdjfl;kjw
- </Layout>
+  return <TodoList />;
 }
-export default App
+
+export default App;
+
