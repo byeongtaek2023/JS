@@ -1,11 +1,14 @@
-import logo from './logo.svg';
-import './App.css';
+import Router from 'shared/Router';
+
+
+
+
+
 
 function App() {
-  return (
-    <div>
-      
-    </div>
+  return (<div>
+ <Router/>
+      </div>
   );
 }
 

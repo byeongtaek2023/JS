@@ -4,7 +4,7 @@ import { useState } from "react";
 export default function App() {
   // --------------제목 내용 입렵 값
   const [todos, setTodos] = useState([
-    { id: "", title: "", body: "", isDone: false },
+    { id: "", title: " ", body: "", isDone: false },
   ]);
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
@@ -23,7 +23,7 @@ export default function App() {
     };
     setTodos([...todos, newTodo]); //불변성을 유지하기 위해서
     setBody("");
-    setTitle()
+    setTitle("")
 
   };
   // ---------- 입력값 제거
