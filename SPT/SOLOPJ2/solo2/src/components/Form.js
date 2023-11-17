@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { v4 as uuid } from "uuid";
 import styled from 'styled-components';
+// import { addCard } from 'shared/data';
 
 const StContainer = styled.div`
 display: flex;
@@ -9,52 +10,43 @@ box-sizing:border-box;
 `
 
 
-function Form() {
+function Form({updateDataFrom}) {
+
 const [Member, setMember]=useState("카리나");
 const [nickname, setNickname]= useState("");
 const [content, setContent]=useState("");
-const [card, setCard] = useState ({
-    id: uuid(),
-    nickname: nickname,
-    content: content,
-    avatar: "",
-    writedTo: Member,
-    createdAt: new Date(),
-  });
 
 
 //닉네임 입력값 가져오기
 const nicknameHandler = (e) =>{
     setNickname(e.target.value);
-    console.log(e.target.value);
 };
 
 //내용 입력값 가져오기
 const contentHandler = (e) => {
     setContent(e.target.value);
-    console.log(e.target.value);
+
 };
 
 //멤버 선택 값 가져오기
 const selectMem = (e) => {
     setMember(e.target.value);
-    console.log(e.target.value);
 }
 
 // 코멘트 추가시 새로 작성
 const addCommentHandler = () => {
-    const newCard = {
-        id: uuid(),
-        nickname: nickname,
-        content: content,
-        avatar: " ",
-        writedTo: Member,
-        createdAt: new Date(),
-    };
-    setCard([...card, newCard]);
-    setNickname("");
-    setContent("");
-}
+  const newCard = {   
+    id: uuid(), 
+    nickname: nickname, 
+    content: content,  
+    avatar: "https://images.unsplash.com/photo-1561962534-50ff147395c3?w=125&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8ODZ8fCVFQyU5RCVCNSVFQiVBQSU4NSVFQyU5RCU5OHxlbnwwfHwwfHx8MA%3D%3D", 
+    writedTo: Member,
+    createdAt: new Date().toString(),
+  };
+  updateDataFrom(newCard);
+  setNickname("");
+  setContent("");
+};
 
 
   return (
