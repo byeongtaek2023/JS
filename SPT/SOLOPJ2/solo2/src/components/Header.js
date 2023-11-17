@@ -1,9 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components';
 
-// const MemberContainer = styled.idv`
-
-// `
 
 const StContainer = styled.div`
 display: flex;
@@ -20,15 +17,17 @@ const Button = styled.button`
   }
 
 `
+// selectMemHandler,
 
-
-function Header({selectMemHandler}) {
+function Header({ setSelectMember}) {
   const members = ['카리나', '윈터', '닝닝', '지젤'] 
-  const [selectedMem, setSelcetedMem] = useState('');
-//부모 요소 state 위해 멤버 선택을 하고 헤더에서 선택도 하고 
+
+//HOME에서 state변경 후 자식 요소에 뿌려주기 위해. 
   const buttonHanlder = (member) => {
-    setSelcetedMem(member);
-    selectMemHandler(member);
+    //이건 foter에 쓰기 위해 
+    // selectMemHandler(member);
+    //이건 form 멤버 일치 foter 멤버 일치
+    setSelectMember(member);
 
   }
 
@@ -41,7 +40,7 @@ function Header({selectMemHandler}) {
             <Button 
             key={member}
             onClick={()=>{buttonHanlder(member)}}
-            // className={selectedMem === member ? 'selected' : ''}
+          
             >{member}
             </Button>
           )})}
