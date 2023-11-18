@@ -12,7 +12,6 @@ box-sizing:border-box;
 
 function Form({updateDataFrom,selectMember,setSelectMember }) {
 
-// const [Member, setMember]=useState('');
 const [nickname, setNickname]= useState('');
 const [content, setContent]=useState('');
 
@@ -31,15 +30,25 @@ const contentHandler = (e) => {
 
 //멤버 선택 값 가져오기 
 const selectMem = (e) => {
-    // setMember(e.target.value);
+
     //Home state에 입력값 
     setSelectMember(e.target.value);
 }
-// {console.log('폼멤버',selectMember);}
-// {console.log('폼멤버2',Member);}
+
 
 // 코멘트 추가시 새로 작성
 const addCommentHandler = () => {
+  //content, nickname 유효성 검사
+  if(nickname.trim() ===''){
+    alert('닉네임을 입력해주세요.')
+    return;
+  };
+
+  if(content.trim()===''){
+    alert('내용을 입력해주세요.')
+    return;
+  };
+
   const newCard = {   
     id: uuid(), 
     nickname: nickname, 
@@ -51,6 +60,7 @@ const addCommentHandler = () => {
   updateDataFrom(newCard);
   setNickname('');
   setContent('');
+console.log('dbdb',uuid());
 };
 
 
@@ -69,7 +79,6 @@ const addCommentHandler = () => {
        maxLength={100}
        onChange={contentHandler}/>
        <select  value={selectMember} onChange={selectMem}>
-        {/* <option>멤버선택</option> */}
         <option value='카리나'>카리나</option>
         <option value='윈터'>윈터</option>
         <option value='닝닝'>닝닝</option>
