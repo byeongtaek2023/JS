@@ -1,6 +1,9 @@
-import { useState } from "react";
+import { useState,useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
+import { FamilyContext } from "context/FamilyContext";
+
+
 const Textarea = styled.textarea`
 width : 700px;
 height : 100px;
@@ -8,7 +11,9 @@ resize : none;
 `
 
 
-function Details({ reRenderdata, setReRenderdata }) {
+function Details() {
+  console.log("Details이 렌더링되었습니다.");
+  const data = useContext(FamilyContext)
   const navigate = useNavigate();
   const { id } = useParams();
   //수정중
@@ -18,7 +23,7 @@ function Details({ reRenderdata, setReRenderdata }) {
   
 
   // 아이디 값이 같은 것 찾기 
-  const FindSameRenderData = reRenderdata.find(
+  const FindSameRenderData = data.reRenderdata.find(
     (item) => item.id.toString() === id.toString()
   );
 
@@ -26,9 +31,9 @@ function Details({ reRenderdata, setReRenderdata }) {
   const removeButtonHandler = (id) => {
     const askDelete = window.confirm("삭제하시겠습니까?");
     if(askDelete===true){
-    const deletedData = reRenderdata.filter((data) => data.id !== id);
+    const deletedData = data.reRenderdata.filter((data) => data.id !== id);
     
-    setReRenderdata(deletedData);
+    data.setReRenderdata(deletedData);
     navigate("/");
   }
   };
@@ -45,10 +50,10 @@ function Details({ reRenderdata, setReRenderdata }) {
       return;}
 
       //내용 수정
-    const updatedData = reRenderdata.map((data) =>
+    const updatedData = data.reRenderdata.map((data) =>
       data.id === FindSameRenderData.id ? { ...data, content: editedContent } : data
     );
-    setReRenderdata(updatedData);
+    data.setReRenderdata(updatedData);
     setIsEditing(false);
   };
 
@@ -91,4 +96,4 @@ function Details({ reRenderdata, setReRenderdata }) {
   );
 }
 
-export default Details;
+export default  Details;

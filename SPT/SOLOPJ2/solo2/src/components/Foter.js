@@ -1,14 +1,18 @@
+import { FamilyContext } from "context/FamilyContext";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { codenseContent } from "shared/data";
 
-function Foter({ reRenderdata, selectMember }) {
+function Foter() {
+  console.log("Foter이 렌더링되었습니다.");
+  const data = useContext(FamilyContext)
   //헤더에서 받아오고 부모에서 sate된 선택된 멤버가 랜더데이터랑 같은지
-  const filterMeber = selectMember
-    ? reRenderdata.filter((item) => item.writedTo === selectMember)
-    : reRenderdata;
+  const filterMeber = data.selectMember
+    ? data.reRenderdata.filter((item) => item.writedTo === data.selectMember)
+    : data.reRenderdata;
 
     if (filterMeber.length === 0) {
-      return <div> {selectMember}에게 남겨진 팬레터가 없습니다. 첫 번째 팬레터의 주인공이 되어주세요!</div>;
+      return <div> {data.selectMember}에게 남겨진 팬레터가 없습니다. 첫 번째 팬레터의 주인공이 되어주세요!</div>;
     }
 
   return (
