@@ -60,7 +60,6 @@ const addCommentHandler = () => {
   updateDataFrom(newCard);
   setNickname('');
   setContent('');
-console.log('dbdb',uuid());
 };
 
 

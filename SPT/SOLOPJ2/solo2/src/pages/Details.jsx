@@ -1,13 +1,24 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import styled from "styled-components";
+const Textarea = styled.textarea`
+width : 700px;
+height : 100px;
+resize : none;
+`
+
 
 function Details({ reRenderdata, setReRenderdata }) {
   const navigate = useNavigate();
   const { id } = useParams();
+  //수정중
   const [isEditing, setIsEditing] = useState(false);
+  //수정된값
   const [editedContent, setEditedContent] = useState("");
   
-  const item = reRenderdata.find(
+
+  // 아이디 값이 같은 것 찾기 
+  const FindSameRenderData = reRenderdata.find(
     (item) => item.id.toString() === id.toString()
   );
 
@@ -25,16 +36,22 @@ function Details({ reRenderdata, setReRenderdata }) {
   // 내용수정
   const editButtonHandler = () => {
     setIsEditing(true);
-    setEditedContent(item.content);
+    setEditedContent(FindSameRenderData.content);
   };
   //내용저장
   const saveButtonHandler = () => {
+    if (editedContent === FindSameRenderData.content) {
+      alert("아무런 수정사항이 없습니다.");
+      return;}
+
+      //내용 수정
     const updatedData = reRenderdata.map((data) =>
-      data.id === item.id ? { ...data, content: editedContent } : data
+      data.id === FindSameRenderData.id ? { ...data, content: editedContent } : data
     );
     setReRenderdata(updatedData);
     setIsEditing(false);
   };
+
 
   return (
     <li>
@@ -46,27 +63,27 @@ function Details({ reRenderdata, setReRenderdata }) {
         Home
       </button>
       <div>
-        <img src={item.avatar} alt={""} />
+        <img src={FindSameRenderData.avatar} alt={""} />
       </div>
 
       <div>
-        <h3>{item.nickname}</h3>
+        <h3>{FindSameRenderData.nickname}</h3>
         {isEditing ? (
-          <textarea
+          <Textarea
             value={editedContent}
             onChange={(e) => setEditedContent(e.target.value)}
           />
         ) : (
-          <p>{item.content}</p>
+          <p>{FindSameRenderData.content}</p>
         )}
-        <p>작성 대상: {item.writedTo}</p>
-        <p>작성 일자: {item.createdAt}</p>
+        <p>작성 대상: {FindSameRenderData.writedTo}</p>
+        <p>작성 일자: {FindSameRenderData.createdAt}</p>
         {isEditing ? (
           <button onClick={saveButtonHandler}>저장</button>
         ) : (
           <>
             <button onClick={editButtonHandler}>수정</button>
-            <button onClick={() => removeButtonHandler(item.id)}>삭제</button>
+            <button onClick={() => removeButtonHandler(FindSameRenderData.id)}>삭제</button>
           </>
         )}
       </div>

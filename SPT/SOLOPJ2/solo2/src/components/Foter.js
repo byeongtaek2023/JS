@@ -7,6 +7,10 @@ function Foter({ reRenderdata, selectMember }) {
     ? reRenderdata.filter((item) => item.writedTo === selectMember)
     : reRenderdata;
 
+    if (filterMeber.length === 0) {
+      return <div> {selectMember}에게 남겨진 팬레터가 없습니다. 첫 번째 팬레터의 주인공이 되어주세요!</div>;
+    }
+
   return (
     <div>
       <ul>

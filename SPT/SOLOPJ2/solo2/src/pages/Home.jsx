@@ -21,9 +21,6 @@ function Home({ reRenderdata, setReRenderdata }) {
     setReRenderdata([...reRenderdata, newCard]);
   };
 
-  useEffect(() => {
-    console.log("랜더링 일어나나");
-  }, [reRenderdata]);
 
   return (
     <div>
