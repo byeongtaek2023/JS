@@ -14,7 +14,7 @@ import Foter from "components/Foter";
 function Home({ reRenderdata, setReRenderdata }) {
   const [selectMember, setSelectMember] = useState("카리나");
 
-  //reRenderdata 처음 화면에 레터 표시.
+
 
   // Form 입력 데이터를 받아오기
   const updateDataFrom = (newCard) => {
