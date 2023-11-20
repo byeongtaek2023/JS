@@ -22,7 +22,7 @@ function Details() {
   const [editedContent, setEditedContent] = useState("");
   
 
-  // 아이디 값이 같은 것 찾기 
+  // 같은 아이디 찾기
   const FindSameRenderData = data.reRenderdata.find(
     (item) => item.id.toString() === id.toString()
   );
