@@ -1,20 +1,55 @@
-import Detail from "pages/Detail";
 import Home from "pages/Home";
-import React from "react";
-// 1. react-router-dom을 사용하기 위해서 아래 API들을 import 합니다.
+import React, {useState} from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Details from "pages/Details";
+import { FamilyContext } from "context/FamilyContext";
+import { useDispatch, useSelector } from 'react-redux';
+import { data } from "./data";
+// import { PLUS_ONE } from "redux/modules/members";
 
-// 2. Router 라는 함수를 만들고 아래와 같이 작성합니다.
-//BrowserRouter를 Router로 감싸는 이유는, 
-//SPA의 장점인 브라우저가 깜빡이지 않고 다른 페이지로 이동할 수 있게 만들어줍니다!
 const Router = () => {
+  const [reRenderdata,setReRenderdata] = useState(data);
+  const [selectMember, setSelectMember] = useState("카리나");
+  const updateDataFrom = (newCard) => {
+     setReRenderdata([...reRenderdata, newCard]);
+  };
+
+
+
+
+  //여기에서 store에 접근하여, counter의 값을 읽어오고 싶다!  
+//useSelector
+const date=  useSelector((state )=>{
+  return state;
+}); 
+console.log("date",date);
+
+//dispatch를 가져와보자
+const dispatch = useDispatch();
+//return문에 
+// onclick={()=>{
+//   dispatch({
+//     type : 'PLUS_ONE',
+//     payload: '', 
+//   });
+// }}
+
+  
   return (
+    <FamilyContext.Provider value={{
+      reRenderdata,
+      setReRenderdata,
+      selectMember,
+      setSelectMember,
+      updateDataFrom
+    }}>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />}/>
-        <Route path="/detail/:id" element={<Detail />}/>
+        <Route path="/" element={<Home />}/> 
+        <Route path="/details/:id" element={<Details />}/>
       </Routes>
     </BrowserRouter>
+    </FamilyContext.Provider>
   );
 };
 

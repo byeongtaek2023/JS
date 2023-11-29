@@ -1,4 +1,6 @@
-import React, { useState } from 'react'
+// import React, { useEffect, useRef, useState } from 'react'
+import { FamilyContext } from 'context/FamilyContext';
+import { useContext } from 'react';
 import styled from 'styled-components';
 
 
@@ -9,27 +11,24 @@ box-sizing:border-box;
 `
 
 const Button = styled.button`
-
-  &:hover{  
-    background-color : skyblue;
-    color : blue;
+background-color : ${(props)=> { return props.$member ? 'skyblue' : 'transparent'}};
+ 
   
   }
 
 `
-// selectMemHandler,
 
-function Header({ setSelectMember}) {
+function Header() {
+  console.log("Header이 렌더링되었습니다.");
+  const data = useContext(FamilyContext)
   const members = ['카리나', '윈터', '닝닝', '지젤'] 
 
 //HOME에서 state변경 후 자식 요소에 뿌려주기 위해. 
   const buttonHanlder = (member) => {
-    //이건 foter에 쓰기 위해 
-    // selectMemHandler(member);
     //이건 form 멤버 일치 foter 멤버 일치
-    setSelectMember(member);
+    data.setSelectMember(member);
+  };
 
-  }
 
   return (
     <StContainer>
@@ -40,7 +39,7 @@ function Header({ setSelectMember}) {
             <Button 
             key={member}
             onClick={()=>{buttonHanlder(member)}}
-          
+            $member={member === data.selectMember}
             >{member}
             </Button>
           )})}
@@ -48,7 +47,7 @@ function Header({ setSelectMember}) {
 
         </div>
     </StContainer>
-  )
-}
+  );
+};
 
 export default Header
