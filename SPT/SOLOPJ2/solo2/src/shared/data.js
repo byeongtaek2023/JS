@@ -47,7 +47,7 @@ export let data =
   //   data = [...data, newCard];
   //   console.log('합체',data);
   // };
-//콘텐트 길면 자르고 
+//콘텐트 길면 자르고 .
 export const codenseContent = (content, maxLength) => {
   if(content.length <= maxLength){
       return content;
